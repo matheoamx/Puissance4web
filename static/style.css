@@ -211,3 +211,12 @@ label {
     border-radius: 50%;
     flex-shrink: 0;
 }
+
+/* Tour actuel */
+.tour-actuel {
+    background: white;
+    padding: 15px 30px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-bottom: 20px;
+}
