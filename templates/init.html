@@ -25,3 +25,29 @@
 
         <form method="POST" action="/game/init">
             <div class="joueurs-config">
+                <!-- Joueur 1 -->
+                <div class="card">
+                    <h2>Joueur 1</h2>
+                    
+                    <div class="form-group">
+                        <label for="joueur1">Pseudo</label>
+                        <input type="text" id="joueur1" name="joueur1" 
+                               placeholder="Entrez votre pseudo" maxlength="20" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Couleur du jeton</label>
+                        <div class="choix-couleur">
+                            <div class="couleur-option selected" onclick="selectCouleur(1, 'rouge')">
+                                <div class="pastille-couleur jeton-rouge"></div>
+                                <p>Rouge</p>
+                                <input type="radio" name="couleur1" value="rouge" checked style="display:none;">
+                            </div>
+                            <div class="couleur-option" onclick="selectCouleur(1, 'jaune')">
+                                <div class="pastille-couleur jeton-jaune"></div>
+                                <p>Jaune</p>
+                                <input type="radio" name="couleur1" value="jaune" style="display:none;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
