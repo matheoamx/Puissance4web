@@ -103,3 +103,51 @@ func handleInit(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("templates/init.html"))
 	tmpl.Execute(w, nil)
 }
+// Page de jeu
+func handlePlay(w http.ResponseWriter, r *http.Request) {
+	// Vérifier qu'une session existe
+	if session.Joueur1.Pseudo == "" {
+		http.Redirect(w, r, "/game/init", http.StatusSeeOther)
+		return
+	}
+
+	if r.Method == "POST" {
+		colonneStr := r.FormValue("colonne")
+		colonne, err := strconv.Atoi(colonneStr)
+
+		if err != nil || colonne < 1 || colonne > 7 {
+			data := map[string]interface{}{
+				"Grille":       session.Grille,
+				"Joueur1":      session.Joueur1,
+				"Joueur2":      session.Joueur2,
+				"JoueurActuel": session.JoueurActuel,
+				"Tour":         session.Tour,
+				"Erreur":       "Veuillez entrer un numéro de colonne entre 1 et 7",
+			}
+			tmpl := template.Must(template.ParseFiles("templates/play.html"))
+			tmpl.Execute(w, data)
+			return
+		}
+		// Convertir en index (0-6)
+		colonne--
+
+		// Placer le jeton
+		couleur := session.Joueur1.Couleur
+		if session.JoueurActuel == 2 {
+			couleur = session.Joueur2.Couleur
+		}
+
+		ligne := placerJeton(session.Grille, colonne, couleur)
+		if ligne == -1 {
+			data := map[string]interface{}{
+				"Grille":       session.Grille,
+				"Joueur1":      session.Joueur1,
+				"Joueur2":      session.Joueur2,
+				"JoueurActuel": session.JoueurActuel,
+				"Tour":         session.Tour,
+				"Erreur":       "Cette colonne est pleine, choisissez-en une autre",
+			}
+			tmpl := template.Must(template.ParseFiles("templates/play.html"))
+			tmpl.Execute(w, data)
+			return
+		}
