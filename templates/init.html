@@ -91,3 +91,6 @@
             });
             // Ajouter la sélection à l'option cliquée
             event.currentTarget.classList.add('selected');
+             // Cocher le bon radio
+            const radio = event.currentTarget.querySelector('input[type="radio"]');
+            radio.checked = true;
