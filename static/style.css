@@ -250,3 +250,14 @@ label {
     border-radius: 6px;
     margin-bottom: 20px;
 }
+
+/* Victoire */
+.victoire-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.trophee {
+    font-size: 80px;
+    margin-bottom: 10px;
+}
