@@ -32,3 +32,19 @@
                 </div>
             </div>
         </div>
+        <!-- Grille de jeu -->
+        <div class="text-center" style="margin: 30px 0;">
+            <div class="grille">
+                {{range $i, $ligne := .Grille}}
+                <div class="ligne">
+                    {{range $j, $case := $ligne}}
+                    <div class="case">
+                        {{if ne $case ""}}
+                        <div class="jeton jeton-{{$case}}"></div>
+                        {{end}}
+                    </div>
+                    {{end}}
+                </div>
+                {{end}}
+            </div>
+        </div>
