@@ -220,3 +220,18 @@ label {
     display: inline-block;
     margin-bottom: 20px;
 }
+
+/* Numéros colonnes */
+.numeros-colonnes {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.numero {
+    width: 60px;
+    text-align: center;
+    font-weight: bold;
+    color: #2C3E50;
+}
