@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fin de partie</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Résultat de la partie -->
+        <div class="victoire-header">
+            {{if .Egalite}}
+                <div class="trophee">🤝</div>
+                <h1>Égalité !</h1>
+                <p style="font-size: 18px; color: #666;">
+                    La grille est complète, aucun joueur n'a gagné
+                </p>
+            {{else}}
+                <div class="trophee">🏆</div>
+                <div style="margin-bottom: 15px;">
+                    <div class="pastille-couleur jeton-{{.Gagnant.Couleur}}" style="margin: 0 auto;"></div>
+                </div>
+                <h1>Victoire de {{.Gagnant.Pseudo}} !</h1>
+                <p style="font-size: 18px; color: #666;">
+                    Félicitations, vous avez aligné 4 jetons {{if eq .Gagnant.Couleur "rouge"}}rouges{{else}}jaunes{{end}}
+                </p>
+            {{end}}
+        </div>
