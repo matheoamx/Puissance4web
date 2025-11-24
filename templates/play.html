@@ -58,3 +58,26 @@
             <div class="numero">6</div>
             <div class="numero">7</div>
         </div>
+         <!-- Formulaire pour jouer -->
+        <div style="max-width: 500px; margin: 30px auto 0;">
+            {{if .Erreur}}
+            <div class="erreur">
+                ⚠️ {{.Erreur}}
+            </div>
+            {{end}}
+
+            <form method="POST" action="/game/play" class="card">
+                <div class="form-group">
+                    <label for="colonne">Choisir une colonne (1-7)</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="number" id="colonne" name="colonne" 
+                               min="1" max="7" placeholder="Ex: 4" 
+                               style="flex: 1;" required>
+                        <button type="submit" class="btn">Placer le jeton</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
