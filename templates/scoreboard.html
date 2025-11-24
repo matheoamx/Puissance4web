@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historique des parties</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <div style="margin-bottom: 20px;">
+            <a href="/" class="btn btn-secondary">← Retour à l'accueil</a>
+        </div>
+
+        <h1>Historique des parties</h1>
+        <p class="text-center" style="color: #666; margin-bottom: 30px;">
+            Retrouvez toutes vos parties passées
+        </p>
+
+        {{if not .Parties}}
+            <div class="card text-center" style="padding: 60px;">
+                <div style="font-size: 80px; margin-bottom: 20px;">🏆</div>
+                <p style="color: #999; font-size: 18px; margin-bottom: 30px;">
+                    Aucune partie jouée pour le moment
+                </p>
+                <a href="/game/init" class="btn">
+                    ➕ Commencer une partie
+                </a>
+            </div>
+        {{else}}
+            <div class="card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2 style="margin: 0;">
+                        {{len .Parties}} partie{{if gt (len .Parties) 1}}s{{end}} jouée{{if gt (len .Parties) 1}}s{{end}}
+                    </h2>
+                    <a href="/game/init" class="btn">➕ Nouvelle partie</a>
+                </div>
+
+                <div style="overflow-x: auto;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Joueur 1</th>
+                                <th>Joueur 2</th>
+                                <th>Résultat</th>
+                                <th style="text-align: right;">Tours</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{range .Parties}}
+                            <tr>
+                                <td style="white-space: nowrap;">{{.Date}}</td>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <div class="pastille-petite jeton-{{.Joueur1.Couleur}}"></div>
+                                        <span>{{.Joueur1.Pseudo}}</span>
+                                        {{if and (not .Egalite) (eq .Gagnant.Pseudo .Joueur1.Pseudo)}}
+                                        <span style="color: gold;">🏆</span>
+                                        {{end}}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        <div class="pastille-petite jeton-{{.Joueur2.Couleur}}"></div>
+                                        <span>{{.Joueur2.Pseudo}}</span>
+                                        {{if and (not .Egalite) (eq .Gagnant.Pseudo .Joueur2.Pseudo)}}
+                                        <span style="color: gold;">🏆</span>
+                                        {{end}}
+                                    </div>
+                                </td>
+                                <td>
+                                    {{if .Egalite}}
+                                        <span style="color: #666; background: #f5f5f5; padding: 5px 12px; border-radius: 15px; font-size: 14px;">
+                                            🤝 Égalité
+                                        </span>
+                                    {{else}}
+                                        <span class="badge">
+                                            Victoire {{.Gagnant.Pseudo}}
+                                        </span>
+                                    {{end}}
+                                </td>
+                                <td style="text-align: right; font-weight: bold;">{{.Tour}}</td>
+                            </tr>
+                            {{end}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        {{end}}
+    </div>
+</body>
+</html>
