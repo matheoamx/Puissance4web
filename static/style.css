@@ -140,3 +140,43 @@ label {
 .form-group {
     margin-bottom: 20px;
 }
+
+
+/* Config joueurs */
+.joueurs-config {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.choix-couleur {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.couleur-option {
+    flex: 1;
+    padding: 20px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.couleur-option:hover {
+    border-color: #2C3E50;
+}
+
+.couleur-option.selected {
+    border-color: #2C3E50;
+    background-color: #f0f8ff;
+}
+
+.pastille-couleur {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+}
