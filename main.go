@@ -128,3 +128,26 @@ func handlePlay(w http.ResponseWriter, r *http.Request) {
 			tmpl.Execute(w, data)
 			return
 		}
+		// Convertir en index (0-6)
+		colonne--
+
+		// Placer le jeton
+		couleur := session.Joueur1.Couleur
+		if session.JoueurActuel == 2 {
+			couleur = session.Joueur2.Couleur
+		}
+
+		ligne := placerJeton(session.Grille, colonne, couleur)
+		if ligne == -1 {
+			data := map[string]interface{}{
+				"Grille":       session.Grille,
+				"Joueur1":      session.Joueur1,
+				"Joueur2":      session.Joueur2,
+				"JoueurActuel": session.JoueurActuel,
+				"Tour":         session.Tour,
+				"Erreur":       "Cette colonne est pleine, choisissez-en une autre",
+			}
+			tmpl := template.Must(template.ParseFiles("templates/play.html"))
+			tmpl.Execute(w, data)
+			return
+		}
