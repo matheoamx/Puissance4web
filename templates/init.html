@@ -94,3 +94,20 @@
              // Cocher le bon radio
             const radio = event.currentTarget.querySelector('input[type="radio"]');
             radio.checked = true;
+            // Mettre à jour la couleur du joueur 2 automatiquement
+            const j2Pastille = document.querySelector('.card:last-child .pastille-couleur');
+            const j2Text = document.querySelector('.card:last-child p');
+            
+            if (couleur === 'rouge') {
+                j2Pastille.classList.remove('jeton-rouge');
+                j2Pastille.classList.add('jeton-jaune');
+                j2Text.textContent = 'Jaune';
+            } else {
+                j2Pastille.classList.remove('jeton-jaune');
+                j2Pastille.classList.add('jeton-rouge');
+                j2Text.textContent = 'Rouge';
+            }
+        }
+    </script>
+</body>
+</html>
