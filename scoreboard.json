@@ -1,0 +1,22 @@
+[
+  {
+    "date": "20/11/2025 08:48",
+    "joueur1": {
+      "id": 1,
+      "pseudo": "matheo",
+      "couleur": "jaune"
+    },
+    "joueur2": {
+      "id": 2,
+      "pseudo": "adib",
+      "couleur": "rouge"
+    },
+    "gagnant": {
+      "id": 1,
+      "pseudo": "matheo",
+      "couleur": "jaune"
+    },
+    "egalite": false,
+    "tour": 7
+  }
+]
