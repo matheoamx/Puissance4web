@@ -3,6 +3,11 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"html/template"
+	"io/ioutil"
+	"net/http"
+	"strconv"
+	"time"
 )
 
 // Structures de données
@@ -29,4 +34,21 @@ type Partie struct {
 	Gagnant  *Joueur `json:"gagnant"`
 	Egalite  bool    `json:"egalite"`
 	Tour     int     `json:"tour"`
+}
+
+var session Session
+
+func main() {
+	// Routes statiques
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+
+	// Routes de l'application
+	http.HandleFunc("/", handleHome)
+	http.HandleFunc("/game/init", handleInit)
+	http.HandleFunc("/game/play", handlePlay)
+	http.HandleFunc("/game/end", handleEnd)
+	http.HandleFunc("/game/scoreboard", handleScoreboard)
+
+	fmt.Println("Serveur démarré sur http://localhost:8080")
+	http.ListenAndServe(":8080", nil)
 }
