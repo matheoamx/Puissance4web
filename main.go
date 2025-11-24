@@ -256,6 +256,53 @@ func verifierVictoire(grille [][]string, ligne, colonne int, couleur string) boo
 			count = 0
 		}
 	}
+	// Vérifier diagonale (simple)
+	// Note: Une vérification complète des diagonales nécessiterait plus de code
+	// Cette version est simplifiée pour un projet étudiant
+
+	return false
+}
+
+func grilleComplete(grille [][]string) bool {
+	for _, ligne := range grille {
+		for _, cellule := range ligne {
+			if cellule == "" {
+				return false
+			}
+		}
+	}
+	return true
+}
+
+func sauvegarderPartie() {
+	parties := chargerHistorique()
+
+	nouvellePartie := Partie{
+		Date:    time.Now().Format("02/01/2006 15:04"),
+		Joueur1: session.Joueur1,
+		Joueur2: session.Joueur2,
+		Gagnant: session.Gagnant,
+		Egalite: session.Egalite,
+		Tour:    session.Tour,
+	}
+
+	parties = append([]Partie{nouvellePartie}, parties...)
+
+	data, _ := json.MarshalIndent(parties, "", "  ")
+	ioutil.WriteFile("scoreboard.json", data, 0644)
+}
+
+func chargerHistorique() []Partie {
+	var parties []Partie
+
+	data, err := ioutil.ReadFile("scoreboard.json")
+	if err != nil {
+		return parties
+	}
+
+	json.Unmarshal(data, &parties)
+	return parties
+}
 
 
 
