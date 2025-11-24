@@ -52,3 +52,8 @@ func main() {
 	fmt.Println("Serveur démarré sur http://localhost:8080")
 	http.ListenAndServe(":8080", nil)
 }
+// Page d'accueil
+func handleHome(w http.ResponseWriter, r *http.Request) {
+	tmpl := template.Must(template.ParseFiles("templates/home.html"))
+	tmpl.Execute(w, nil)
+}
