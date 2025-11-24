@@ -82,3 +82,10 @@
 
     <script>
         function selectCouleur(joueur, couleur) {
+             // Retirer la sélection de toutes les options du joueur
+            const options = document.querySelectorAll('.joueurs-config .couleur-option');
+            options.forEach(opt => {
+                if (opt.parentElement.parentElement.parentElement.querySelector('h2').textContent.includes('Joueur ' + joueur)) {
+                    opt.classList.remove('selected');
+                }
+            });
