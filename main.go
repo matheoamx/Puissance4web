@@ -151,3 +151,55 @@ func handlePlay(w http.ResponseWriter, r *http.Request) {
 			tmpl.Execute(w, data)
 			return
 		}
+		// Vérifier victoire
+		if verifierVictoire(session.Grille, ligne, colonne, couleur) {
+			if session.JoueurActuel == 1 {
+				session.Gagnant = &session.Joueur1
+			} else {
+				session.Gagnant = &session.Joueur2
+			}
+			sauvegarderPartie()
+			http.Redirect(w, r, "/game/end", http.StatusSeeOther)
+			return
+		}
+
+		// Vérifier égalité
+		if grilleComplete(session.Grille) {
+			session.Egalite = true
+			sauvegarderPartie()
+			http.Redirect(w, r, "/game/end", http.StatusSeeOther)
+			return
+		}
+		// Changer de joueur
+		if session.JoueurActuel == 1 {
+			session.JoueurActuel = 2
+		} else {
+			session.JoueurActuel = 1
+		}
+		session.Tour++
+	}
+	// Afficher la grille
+	data := map[string]interface{}{
+		"Grille":       session.Grille,
+		"Joueur1":      session.Joueur1,
+		"Joueur2":      session.Joueur2,
+		"JoueurActuel": session.JoueurActuel,
+		"Tour":         session.Tour,
+	}
+	tmpl := template.Must(template.ParseFiles("templates/play.html"))
+	tmpl.Execute(w, data)
+}
+// Page de fin
+func handleEnd(w http.ResponseWriter, r *http.Request) {
+	data := map[string]interface{}{
+		"Grille":  session.Grille,
+		"Joueur1": session.Joueur1,
+		"Joueur2": session.Joueur2,
+		"Gagnant": session.Gagnant,
+		"Egalite": session.Egalite,
+		"Tour":    session.Tour,
+	}
+	tmpl := template.Must(template.ParseFiles("templates/end.html"))
+	tmpl.Execute(w, data)
+}
+
