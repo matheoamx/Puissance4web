@@ -178,3 +178,14 @@ func handlePlay(w http.ResponseWriter, r *http.Request) {
 		}
 		session.Tour++
 	}
+	// Afficher la grille
+	data := map[string]interface{}{
+		"Grille":       session.Grille,
+		"Joueur1":      session.Joueur1,
+		"Joueur2":      session.Joueur2,
+		"JoueurActuel": session.JoueurActuel,
+		"Tour":         session.Tour,
+	}
+	tmpl := template.Must(template.ParseFiles("templates/play.html"))
+	tmpl.Execute(w, data)
+}
