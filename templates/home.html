@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power'4 Web - Accueil</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 Power'4 Web</h1>
+        
+        <div class="card text-center">
+            <p style="font-size: 18px; color: #666; margin-bottom: 30px;">
+                Affrontez un adversaire dans ce jeu de stratégie classique.<br>
+                Alignez 4 jetons de votre couleur pour remporter la victoire !
+            </p>
+            
+            <a href="/game/init" class="btn" style="font-size: 18px; padding: 15px 40px;">
+                Commencer une partie
+            </a>
+        </div>
+
+        <div class="card">
+            <h2>📋 Règles du jeu</h2>
+            <ul class="regles">
+                <li>Le jeu se joue à 2 joueurs</li>
+                <li>La grille comporte 7 colonnes et 6 lignes (42 cases)</li>
+                <li>Deux joueurs s'affrontent avec des jetons Rouge et Jaune</li>
+                <li>À tour de rôle, placez vos jetons dans les colonnes</li>
+                <li>Les jetons tombent en bas de la colonne choisie</li>
+                <li>Le premier à aligner 4 jetons (horizontalement, verticalement ou en diagonale) gagne !</li>
+                <li>Si la grille est pleine sans vainqueur, la partie se termine en égalité</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>🎯 Mode d'emploi</h2>
+            <ul class="regles">
+                <li><strong>Configuration :</strong> Renseignez les pseudos des deux joueurs et choisissez vos couleurs</li>
+                <li><strong>Placement des jetons :</strong> À tour de rôle, choisissez une colonne (1-7) pour faire tomber votre jeton</li>
+                <li><strong>Victoire :</strong> Le premier joueur à aligner 4 jetons remporte la partie</li>
+            </ul>
+        </div>
+
+        <div class="text-center" style="margin-top: 20px;">
+            <a href="/game/scoreboard" class="btn btn-secondary">
+                Voir l'historique des parties
+            </a>
+        </div>
+    </div>
+</body>
+</html>
