@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuration de la partie</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <div style="margin-bottom: 20px;">
+            <a href="/" class="btn btn-secondary">← Retour à l'accueil</a>
+        </div>
+
+        <h1>Configuration de la partie</h1>
+        <p class="text-center" style="color: #666; margin-bottom: 30px;">
+            Configurez les joueurs avant de commencer la partie
+        </p>
+
+        {{if .Error}}
+        <div class="erreur">
+            {{.Error}}
+        </div>
+        {{end}}
+
+        <form method="POST" action="/game/init">
+            <div class="joueurs-config">
