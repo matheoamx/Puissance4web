@@ -14,3 +14,21 @@
                 ← Retour à l'accueil
             </a>
         </div>
+         <!-- Info des joueurs -->
+        <div class="info-joueurs">
+            <div class="joueur-card {{if eq .JoueurActuel 1}}actif{{end}}">
+                <div class="pastille-petite jeton-{{.Joueur1.Couleur}}"></div>
+                <div>
+                    <p style="font-size: 12px; color: #999; margin: 0;">Joueur 1</p>
+                    <p style="margin: 0; font-weight: bold;">{{.Joueur1.Pseudo}}</p>
+                </div>
+            </div>
+            
+            <div class="joueur-card {{if eq .JoueurActuel 2}}actif{{end}}">
+                <div class="pastille-petite jeton-{{.Joueur2.Couleur}}"></div>
+                <div>
+                    <p style="font-size: 12px; color: #999; margin: 0;">Joueur 2</p>
+                    <p style="margin: 0; font-weight: bold;">{{.Joueur2.Pseudo}}</p>
+                </div>
+            </div>
+        </div>
