@@ -63,3 +63,52 @@ h2 {
     margin-bottom: 20px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
+
+
+/* Grille de jeu */
+.grille {
+    background-color: #2C3E50;
+    padding: 20px;
+    border-radius: 15px;
+    display: inline-block;
+    margin: 20px auto;
+}
+
+.ligne {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.ligne:last-child {
+    margin-bottom: 0;
+}
+
+.case {
+    width: 60px;
+    height: 60px;
+    background-color: #34495E;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.case:hover {
+    background-color: #4a6278;
+}
+
+.jeton {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.jeton-rouge {
+    background-color: #E74C3C;
+}
+
+.jeton-jaune {
+    background-color: #F1C40F;
+}
