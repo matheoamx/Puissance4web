@@ -211,4 +211,51 @@ func handleScoreboard(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("templates/scoreboard.html"))
 	tmpl.Execute(w, data)
 }
+// Fonctions utilitaires
+func creerGrilleVide() [][]string {
+	grille := make([][]string, 6)
+	for i := range grille {
+		grille[i] = make([]string, 7)
+	}
+	return grille
+}
+
+func placerJeton(grille [][]string, colonne int, couleur string) int {
+	for ligne := 5; ligne >= 0; ligne-- {
+		if grille[ligne][colonne] == "" {
+			grille[ligne][colonne] = couleur
+			return ligne
+		}
+	}
+	return -1
+}
+
+func verifierVictoire(grille [][]string, ligne, colonne int, couleur string) bool {
+	// Vérifier horizontal
+	count := 0
+	for c := 0; c < 7; c++ {
+		if grille[ligne][c] == couleur {
+			count++
+			if count == 4 {
+				return true
+			}
+		} else {
+			count = 0
+		}
+	}
+
+	// Vérifier vertical
+	count = 0
+	for l := 0; l < 6; l++ {
+		if grille[l][colonne] == couleur {
+			count++
+			if count == 4 {
+				return true
+			}
+		} else {
+			count = 0
+		}
+	}
+
+
 
