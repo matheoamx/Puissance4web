@@ -57,3 +57,31 @@ func handleHome(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("templates/home.html"))
 	tmpl.Execute(w, nil)
 }
+// Page d'initialisation
+func handleInit(w http.ResponseWriter, r *http.Request) {
+	if r.Method == "POST" {
+		// Récupérer les données du formulaire
+		joueur1Pseudo := r.FormValue("joueur1")
+		joueur2Pseudo := r.FormValue("joueur2")
+		couleur1 := r.FormValue("couleur1")
+
+		// Validation basique
+		if joueur1Pseudo == "" || joueur2Pseudo == "" {
+			data := map[string]string{"Error": "Veuillez renseigner les deux pseudos"}
+			tmpl := template.Must(template.ParseFiles("templates/init.html"))
+			tmpl.Execute(w, data)
+			return
+		}
+
+		if joueur1Pseudo == joueur2Pseudo {
+			data := map[string]string{"Error": "Les pseudos doivent être différents"}
+			tmpl := template.Must(template.ParseFiles("templates/init.html"))
+			tmpl.Execute(w, data)
+			return
+		}
+
+		// Déterminer la couleur du joueur 2
+		couleur2 := "jaune"
+		if couleur1 == "jaune" {
+			couleur2 = "rouge"
+		}
