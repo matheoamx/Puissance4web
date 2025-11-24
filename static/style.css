@@ -26,3 +26,31 @@ h2 {
     font-size: 1.8em;
     margin-bottom: 15px;
 }
+
+/* Boutons */
+.btn {
+    background-color: #2C3E50;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    display: inline-block;
+    margin: 5px;
+}
+
+.btn:hover {
+    background-color: #34495E;
+}
+
+.btn-secondary {
+    background-color: white;
+    color: #2C3E50;
+    border: 2px solid #2C3E50;
+}
+
+.btn-secondary:hover {
+    background-color: #f0f0f0;
+}
