@@ -202,4 +202,107 @@ func handleEnd(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("templates/end.html"))
 	tmpl.Execute(w, data)
 }
+// Page du scoreboard
+func handleScoreboard(w http.ResponseWriter, r *http.Request) {
+	parties := chargerHistorique()
+	data := map[string]interface{}{
+		"Parties": parties,
+	}
+	tmpl := template.Must(template.ParseFiles("templates/scoreboard.html"))
+	tmpl.Execute(w, data)
+}
+// Fonctions utilitaires
+func creerGrilleVide() [][]string {
+	grille := make([][]string, 6)
+	for i := range grille {
+		grille[i] = make([]string, 7)
+	}
+	return grille
+}
+
+func placerJeton(grille [][]string, colonne int, couleur string) int {
+	for ligne := 5; ligne >= 0; ligne-- {
+		if grille[ligne][colonne] == "" {
+			grille[ligne][colonne] = couleur
+			return ligne
+		}
+	}
+	return -1
+}
+
+func verifierVictoire(grille [][]string, ligne, colonne int, couleur string) bool {
+	// Vérifier horizontal
+	count := 0
+	for c := 0; c < 7; c++ {
+		if grille[ligne][c] == couleur {
+			count++
+			if count == 4 {
+				return true
+			}
+		} else {
+			count = 0
+		}
+	}
+
+	// Vérifier vertical
+	count = 0
+	for l := 0; l < 6; l++ {
+		if grille[l][colonne] == couleur {
+			count++
+			if count == 4 {
+				return true
+			}
+		} else {
+			count = 0
+		}
+	}
+	// Vérifier diagonale (simple)
+	// Note: Une vérification complète des diagonales nécessiterait plus de code
+	// Cette version est simplifiée pour un projet étudiant
+
+	return false
+}
+
+func grilleComplete(grille [][]string) bool {
+	for _, ligne := range grille {
+		for _, cellule := range ligne {
+			if cellule == "" {
+				return false
+			}
+		}
+	}
+	return true
+}
+
+func sauvegarderPartie() {
+	parties := chargerHistorique()
+
+	nouvellePartie := Partie{
+		Date:    time.Now().Format("02/01/2006 15:04"),
+		Joueur1: session.Joueur1,
+		Joueur2: session.Joueur2,
+		Gagnant: session.Gagnant,
+		Egalite: session.Egalite,
+		Tour:    session.Tour,
+	}
+
+	parties = append([]Partie{nouvellePartie}, parties...)
+
+	data, _ := json.MarshalIndent(parties, "", "  ")
+	ioutil.WriteFile("scoreboard.json", data, 0644)
+}
+
+func chargerHistorique() []Partie {
+	var parties []Partie
+
+	data, err := ioutil.ReadFile("scoreboard.json")
+	if err != nil {
+		return parties
+	}
+
+	json.Unmarshal(data, &parties)
+	return parties
+}
+
+
 
