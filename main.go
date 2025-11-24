@@ -189,3 +189,17 @@ func handlePlay(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("templates/play.html"))
 	tmpl.Execute(w, data)
 }
+// Page de fin
+func handleEnd(w http.ResponseWriter, r *http.Request) {
+	data := map[string]interface{}{
+		"Grille":  session.Grille,
+		"Joueur1": session.Joueur1,
+		"Joueur2": session.Joueur2,
+		"Gagnant": session.Gagnant,
+		"Egalite": session.Egalite,
+		"Tour":    session.Tour,
+	}
+	tmpl := template.Must(template.ParseFiles("templates/end.html"))
+	tmpl.Execute(w, data)
+}
+
