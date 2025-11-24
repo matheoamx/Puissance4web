@@ -202,4 +202,13 @@ func handleEnd(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("templates/end.html"))
 	tmpl.Execute(w, data)
 }
+// Page du scoreboard
+func handleScoreboard(w http.ResponseWriter, r *http.Request) {
+	parties := chargerHistorique()
+	data := map[string]interface{}{
+		"Parties": parties,
+	}
+	tmpl := template.Must(template.ParseFiles("templates/scoreboard.html"))
+	tmpl.Execute(w, data)
+}
 
