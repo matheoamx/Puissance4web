@@ -99,3 +99,7 @@ func handleInit(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/game/play", http.StatusSeeOther)
 		return
 	}
+	// Afficher le formulaire
+	tmpl := template.Must(template.ParseFiles("templates/init.html"))
+	tmpl.Execute(w, nil)
+}
