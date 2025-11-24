@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partie en cours</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <div style="margin-bottom: 20px;">
+            <a href="/" class="btn btn-secondary" style="font-size: 14px; padding: 8px 16px;"
+               onclick="return confirm('Êtes-vous sûr de vouloir quitter la partie ?')">
+                ← Retour à l'accueil
+            </a>
+        </div>
+         <!-- Info des joueurs -->
+        <div class="info-joueurs">
+            <div class="joueur-card {{if eq .JoueurActuel 1}}actif{{end}}">
+                <div class="pastille-petite jeton-{{.Joueur1.Couleur}}"></div>
+                <div>
+                    <p style="font-size: 12px; color: #999; margin: 0;">Joueur 1</p>
+                    <p style="margin: 0; font-weight: bold;">{{.Joueur1.Pseudo}}</p>
+                </div>
+            </div>
+            
+            <div class="joueur-card {{if eq .JoueurActuel 2}}actif{{end}}">
+                <div class="pastille-petite jeton-{{.Joueur2.Couleur}}"></div>
+                <div>
+                    <p style="font-size: 12px; color: #999; margin: 0;">Joueur 2</p>
+                    <p style="margin: 0; font-weight: bold;">{{.Joueur2.Pseudo}}</p>
+                </div>
+            </div>
+        </div>
+        <!-- Grille de jeu -->
+        <div class="text-center" style="margin: 30px 0;">
+            <div class="grille">
+                {{range $i, $ligne := .Grille}}
+                <div class="ligne">
+                    {{range $j, $case := $ligne}}
+                    <div class="case">
+                        {{if ne $case ""}}
+                        <div class="jeton jeton-{{$case}}"></div>
+                        {{end}}
+                    </div>
+                    {{end}}
+                </div>
+                {{end}}
+            </div>
+        </div>
+ <!-- Numéros des colonnes -->
+        <div class="numeros-colonnes">
+            <div class="numero">1</div>
+            <div class="numero">2</div>
+            <div class="numero">3</div>
+            <div class="numero">4</div>
+            <div class="numero">5</div>
+            <div class="numero">6</div>
+            <div class="numero">7</div>
+        </div>
+         <!-- Formulaire pour jouer -->
+        <div style="max-width: 500px; margin: 30px auto 0;">
+            {{if .Erreur}}
+            <div class="erreur">
+                ⚠️ {{.Erreur}}
+            </div>
+            {{end}}
+
+            <form method="POST" action="/game/play" class="card">
+                <div class="form-group">
+                    <label for="colonne">Choisir une colonne (1-7)</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="number" id="colonne" name="colonne" 
+                               min="1" max="7" placeholder="Ex: 4" 
+                               style="flex: 1;" required>
+                        <button type="submit" class="btn">Placer le jeton</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
