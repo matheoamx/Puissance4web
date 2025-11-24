@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -26,7 +26,8 @@
                     Félicitations, vous avez aligné 4 jetons {{if eq .Gagnant.Couleur "rouge"}}rouges{{else}}jaunes{{end}}
                 </p>
             {{end}}
-        </div> <!-- Récapitulatif -->
+        </div> 
+        <!-- Récapitulatif -->
         <div class="card">
             <h2>Récapitulatif de la partie</h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
@@ -49,6 +50,25 @@
                 <div style="background: #f5f5f5; padding: 20px; border-radius: 8px;">
                     <p style="font-size: 14px; color: #999; margin: 0 0 8px 0;">Nombre de tours</p>
                     <p style="margin: 0; font-weight: bold; font-size: 24px;">{{.Tour}}</p>
+                </div>
+            </div>
+        </div>
+        <!-- Grille finale -->
+        <div class="card">
+            <h2 class="text-center">Grille finale</h2>
+            <div class="text-center" style="margin-top: 20px;">
+                <div class="grille" style="transform: scale(0.8);">
+                    {{range $i, $ligne := .Grille}}
+                    <div class="ligne">
+                        {{range $j, $case := $ligne}}
+                        <div class="case" style="cursor: default;">
+                            {{if ne $case ""}}
+                            <div class="jeton jeton-{{$case}}"></div>
+                            {{end}}
+                        </div>
+                        {{end}}
+                    </div>
+                    {{end}}
                 </div>
             </div>
         </div>
