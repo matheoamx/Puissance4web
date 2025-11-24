@@ -299,3 +299,22 @@ tr:hover {
     font-size: 14px;
     display: inline-block;
 }
+
+/* Règles */
+.regles {
+    list-style: none;
+    padding: 0;
+}
+
+.regles li {
+    padding: 10px 0;
+    color: #555;
+}
+
+.regles li:before {
+    content: "•";
+    color: #2C3E50;
+    font-weight: bold;
+    font-size: 20px;
+    margin-right: 10px;
+}
