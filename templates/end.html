@@ -26,4 +26,29 @@
                     Félicitations, vous avez aligné 4 jetons {{if eq .Gagnant.Couleur "rouge"}}rouges{{else}}jaunes{{end}}
                 </p>
             {{end}}
+        </div> <!-- Récapitulatif -->
+        <div class="card">
+            <h2>Récapitulatif de la partie</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
+                <div style="background: #f5f5f5; padding: 20px; border-radius: 8px;">
+                    <p style="font-size: 14px; color: #999; margin: 0 0 8px 0;">Joueur 1</p>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div class="pastille-petite jeton-{{.Joueur1.Couleur}}"></div>
+                        <p style="margin: 0; font-weight: bold;">{{.Joueur1.Pseudo}}</p>
+                    </div>
+                </div>
+
+                <div style="background: #f5f5f5; padding: 20px; border-radius: 8px;">
+                    <p style="font-size: 14px; color: #999; margin: 0 0 8px 0;">Joueur 2</p>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <div class="pastille-petite jeton-{{.Joueur2.Couleur}}"></div>
+                        <p style="margin: 0; font-weight: bold;">{{.Joueur2.Pseudo}}</p>
+                    </div>
+                </div>
+
+                <div style="background: #f5f5f5; padding: 20px; border-radius: 8px;">
+                    <p style="font-size: 14px; color: #999; margin: 0 0 8px 0;">Nombre de tours</p>
+                    <p style="margin: 0; font-weight: bold; font-size: 24px;">{{.Tour}}</p>
+                </div>
+            </div>
         </div>
