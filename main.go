@@ -85,3 +85,17 @@ func handleInit(w http.ResponseWriter, r *http.Request) {
 		if couleur1 == "jaune" {
 			couleur2 = "rouge"
 		}
+		// Initialiser la session
+		session = Session{
+			Grille:       creerGrilleVide(),
+			Joueur1:      Joueur{ID: 1, Pseudo: joueur1Pseudo, Couleur: couleur1},
+			Joueur2:      Joueur{ID: 2, Pseudo: joueur2Pseudo, Couleur: couleur2},
+			JoueurActuel: 1,
+			Tour:         1,
+			Gagnant:      nil,
+			Egalite:      false,
+		}
+
+		http.Redirect(w, r, "/game/play", http.StatusSeeOther)
+		return
+	}
