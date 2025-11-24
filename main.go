@@ -170,3 +170,11 @@ func handlePlay(w http.ResponseWriter, r *http.Request) {
 			http.Redirect(w, r, "/game/end", http.StatusSeeOther)
 			return
 		}
+		// Changer de joueur
+		if session.JoueurActuel == 1 {
+			session.JoueurActuel = 2
+		} else {
+			session.JoueurActuel = 1
+		}
+		session.Tour++
+	}
