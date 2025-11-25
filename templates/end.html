@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -26,7 +26,8 @@
                     Félicitations, vous avez aligné 4 jetons {{if eq .Gagnant.Couleur "rouge"}}rouges{{else}}jaunes{{end}}
                 </p>
             {{end}}
-        </div> 
+        </div>
+
         <!-- Récapitulatif -->
         <div class="card">
             <h2>Récapitulatif de la partie</h2>
@@ -53,10 +54,11 @@
                 </div>
             </div>
         </div>
+
         <!-- Grille finale -->
         <div class="card">
-            <h2 class="text-center">Grille finale</h2>
-            <div class="text-center" style="margin-top: 20px;">
+            <h2 style="text-align: center;">Grille finale</h2>
+            <div style="display: flex; justify-content: center; margin-top: 20px;">
                 <div class="grille" style="transform: scale(0.8);">
                     {{range $i, $ligne := .Grille}}
                     <div class="ligne">
@@ -72,6 +74,7 @@
                 </div>
             </div>
         </div>
+
         <!-- Boutons d'action -->
         <div class="text-center" style="margin-top: 30px;">
             <a href="/game/init" class="btn" style="font-size: 16px;">
